@@ -1,8 +1,10 @@
 from flask import Flask, request
 import FirestoreDB
 from controllers.ChatbotController import ask_chatbot
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 FirestoreDB.connect()
 
 @app.route('/')
