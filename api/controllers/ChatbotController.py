@@ -26,3 +26,4 @@ def ask_chatbot(request):
 
     # print(new_message_history)
     return new_message_history
+

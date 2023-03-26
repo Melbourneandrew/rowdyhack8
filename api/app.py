@@ -1,6 +1,7 @@
 from flask import Flask, request
 import FirestoreDB
 from controllers.ChatbotController import ask_chatbot
+from controllers.TwilioChatbotController import twilio_ask_chatbot
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -29,3 +30,8 @@ def clear_history():
 def ask_question():
     print("Question asked...")
     return ask_chatbot(request)
+
+@app.route("/sms", methods=['GET', 'POST'])
+def sms_reply():
+    print("SMS received...")
+    return twilio_ask_chatbot(request)
