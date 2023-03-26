@@ -1,0 +1,65 @@
+.container {
+
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    background-color: white;
+    position: relative;
+
+}
+.title {
+
+    background-color: bisque;
+    border-bottom: 2px solid black;
+ 
+
+
+}
+.title p {
+
+    color: black;
+    font-size: 2.5rem;
+    text-align: center;
+
+}
+.ChatBox {
+
+    background-color: white;
+    height: 70vh;
+
+
+
+}
+
+.TextArea {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    height: fit-content;
+    position: absolute;
+    height: 10vh;
+    width: 80%;
+    bottom: 0;
+}
+.enterButton {
+
+    background-color: burlywood;
+    margin-left: 5%;
+    border-radius: 1.2rem;
+    color: black;
+    width: 20vh;
+    height: 10vh;
+}
+
+.inputField {
+
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    height: 10vh;
+    margin-left: 5%;
+    width: 90%;
+    border-color: black;
+    border-radius: 10px;
+
+}
