@@ -12,7 +12,7 @@ def ask_chatbot(request):
     message_history = body['message_history']
     student_question = body['student_question']
     course_name = body['course_name']
-
+    print("Student question: " + student_question)
     # lecture_text = query_faiss("lecture_index.faiss", student_question)
     textbook_text, page_numbers = query_textbook(student_question)
     lecture_text = "This is a lecture excerpt"

@@ -1,3 +1,4 @@
+# TODO: Move similarity search to GCP Vertex AI
 from dotenv import load_dotenv
 import os
 import json
