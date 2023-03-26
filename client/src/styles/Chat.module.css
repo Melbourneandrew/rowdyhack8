@@ -5,29 +5,29 @@
     display: flex;
     height: 100vh;
     flex-direction: column;
-    background-color: white;
+    background-color: #fefae0;;
     font-family: 'Inter', sans-serif;
+
 
 
 }
 
 .title {
 
-    background-color: bisque;
+    background-color: hsl(33, 100%, 88%);
     border-bottom: 2px solid black;
+    filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
  
 }
 
 .title p {
 
-    color: black;
+    /* color: black; */
     font-size: 2.5rem;
     text-align: center;
 
 }
 .ChatBox {
-
-    background-color: white;
 
     display: flex;
     flex-direction: column;
@@ -35,57 +35,71 @@
     overflow-y: scroll;
 }
 
-.TextArea {
+.inputContainer{
+    width: 90%;
     display: flex;
     flex-direction: row;
-    background-color: white;
-    height: fit-content;
-    width: 80%;
-    bottom: 0;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+    z-index: 999;  
 }
-.enterButton {
 
-    background-color: burlywood;
-    margin-left: 5%;
-    border-radius: 1.2rem;
-    color: black;
-    width: 20vh;
-    height: 10vh;
+.enterButton {
+    background-color: #fefae0 !important;
+    border: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+
 }
+
+
 
 .inputField {
-
-    background-color: white;
+    width: 100%;
+    background-color: #fefae0;
+    filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25))drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
     color: black;
+    font-size: 18px;
     padding: 1rem;
-    height: 10vh;
-    margin-left: 5%;
-    width: 90%;
-    border-color: black;
+    border: none;
+    /* border-width: 0.01rem; */
+    border-color:  #e2b77e;
     border-radius: 10px;
+    z-index: 998;
+    display: block;
+
 
 }
 
+.inputField:focus {
+
+    outline-color: transparent;
+    outline-style: none;
+
+}
 .user_msg {
-    --bg-color: #f8dbba;
+    --bg-color: #faedcd;
 }
 
 .assistant_msg {
-    --bg-color:  #f7dfc0;
+    --bg-color:  #fefae0;
 }
 
 .message {
     background-color: var(--bg-color);
     padding: 2rem 4rem;
     line-height: 1.5rem;
-    color: black;
     display: flex;
     gap: 1rem;
 }
 
 .icon {
     --size: 2.25rem;
-    background-color: rgba(0,0,0,0.1);
     width: var(--size);
     height: var(--size);
     border-radius: 0.1rem;
@@ -94,4 +108,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.userIcon {
+    background-color: rgba(0,0,0,0.1);
+    color: blue;
+    
+}
+
+.aiIcon {
+    background-color: #d4a373;
+    color: rgb(255, 255, 255);
+}
+
+.fade {
+    background: linear-gradient(#e2b77e00, #e2b77ef4);
+    width: 100%;
+    height: 33%;
+    position: absolute;
+    bottom: 0;
 }

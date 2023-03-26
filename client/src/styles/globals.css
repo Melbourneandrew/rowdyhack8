@@ -1,3 +1,7 @@
+* {
+  color: #3a2511;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -77,6 +81,9 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+button{
+  background-color: none !important;
 }
 
 html,
