@@ -53,18 +53,19 @@
     overflow-y: scroll;
     padding-bottom: 25vh;
     background-color: #fefae0;
+    position: relative;
 
 }
 
 .inputContainer{
-    width: 90%;
     display: flex;
     flex-direction: row;
-    position: fixed;
+    position: absolute;
+    width: 70%;
     left: 50%;
+    bottom:20px;
     transform: translateX(-50%);
-    bottom: 10px;
-    z-index: 999;  
+    z-index: 999;
 }
 
 .enterButton {
@@ -147,8 +148,8 @@
     background: linear-gradient(#e2b77e00, #e2b77ef4);
     width: 100%;
     height: 33%;
-    position: absolute;
     bottom: 0;
+    position: absolute;
 }
 
 
@@ -167,6 +168,7 @@
     border-right: #523b006d 1px solid;
     height: 100vh;
     position: sticky;
+    padding: 5px;
 
 }
 
@@ -184,10 +186,20 @@
 
 .menu button:hover {
     cursor: pointer;
-    background-color: #d4a373;
+    background-color: #e2b77e5e;
+    border-radius: 5px;
+}
+
+button.active{
+    background-color: #e2b77eb9;
+    border-radius: 5px;
 }
 
 .resetBtn {
 
     margin-top: 4rem;
+}
+.newBtn {
+
+    margin-bottom: 4rem;
 }
