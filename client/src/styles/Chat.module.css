@@ -67,11 +67,11 @@
 }
 
 .user_msg {
-    --bg-color: #fed7aa;
+    --bg-color: #f8dbba;
 }
 
 .assistant_msg {
-    --bg-color:  #b09f8d;
+    --bg-color:  #f7dfc0;
 }
 
 .message {
@@ -85,7 +85,7 @@
 
 .icon {
     --size: 2.25rem;
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(0,0,0,0.1);
     width: var(--size);
     height: var(--size);
     border-radius: 0.1rem;
