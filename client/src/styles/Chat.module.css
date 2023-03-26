@@ -12,19 +12,34 @@
 
 }
 
-.title {
+.titleContainer{
 
-    background-color: hsl(33, 100%, 88%);
-    border-bottom: 2px solid black;
+    display: flex;
+    align-items: center;
     filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    
  
 }
 
-.title p {
+.titleContainer span {
+
+    font-size: 70px;
+
+
+}
+
+.title{
 
     /* color: black; */
     font-size: 2.5rem;
     text-align: center;
+    font-weight: bold;
+
+   
 
 }
 .ChatBox {
@@ -83,11 +98,12 @@
 
 }
 .user_msg {
-    --bg-color: #faedcd;
+   
+    --bg-color:  #fefae0;
 }
 
 .assistant_msg {
-    --bg-color:  #fefae0;
+    --bg-color: #faedcd;
 }
 
 .message {

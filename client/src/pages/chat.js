@@ -5,6 +5,7 @@ import Head from "next/head";
 import Image from 'next/image';
 import SendIcon from '@/components/SendIcon'
 
+
 export default function Chat() {
   const [chat, setChat] = useState([
     {
@@ -40,6 +41,19 @@ export default function Chat() {
 
   const handleSubmit = async (e) => {
 
+
+    e.preventDefault();
+
+
+    const JSONdata = JSON.stringify(
+    {
+        "message_history": chat,
+        "email": "melby@gmail.com",
+        "student_question": message,
+        "course_name": "Marketing101"
+    
+    });
+
     const updateChat = [
         ...chat,
         {
@@ -49,11 +63,6 @@ export default function Chat() {
     ]
 
     setChat(updateChat)
-
-    e.preventDefault();
-
-
-    const JSONdata = JSON.stringify(chat);
 
     const endpoint = "/api/form";
 
@@ -66,12 +75,18 @@ export default function Chat() {
 
       body: JSONdata,
     };
-
-    const response = await fetch(endpoint, options);
+    const uri = process.env.NEXT_PUBLIC_API_URL + '/ask_question'
+    
+    const response = await fetch(uri, options);
 
     const result = await response.json();
+
+    setChat(result)
+    
     console.log(result);
-    alert(`This is the message you just posted: ${result.data.message}`);
+
+    
+
   };
 
   return (
@@ -82,13 +97,16 @@ export default function Chat() {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
         />
       </Head>
-      <div className={styles.title}>
-        <p>Knowlater</p>
+      <div className={styles.titleContainer}>
+      <span className="material-symbols-outlined">neurology</span>
+        <p className={styles.title}>TutorAI</p>
       </div>
       <div className={styles.ChatBox}>
+
         {chat.filter((msg)=>msg.role.toLowerCase() !== "system").map((message, index) => {
             console.log(message)
             return(
+
           <div
             key={index}
             className={`${styles.message} ${
@@ -97,8 +115,8 @@ export default function Chat() {
                 : styles.user_msg
             }`}
           >
-            <div className={styles.icon + " " + (message.role !== "user" ? styles.userIcon : styles.aiIcon)}>
-              {message.role !== "user" ? (
+            <div className={styles.icon + " " + (message.role == "user" ? styles.userIcon : styles.aiIcon)}>
+              {message.role == "user" ? (
                 <span className="material-symbols-outlined">account_circle</span>
               ) : (
                 <span className="material-symbols-outlined">neurology</span>
@@ -132,7 +150,7 @@ export default function Chat() {
           </button>
           </div>
         </form>
-      <div class={styles.fade}></div>
+      <div className={styles.fade}></div>
     </div>
   );
 }
