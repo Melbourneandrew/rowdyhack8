@@ -90,6 +90,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -112,3 +113,19 @@ a {
     color-scheme: dark;
   }
 }
+
+@keyframes spin {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+.loader {
+  animation: spin 1s linear infinite;
+  width:min-content;
+  height:min-content;
+}
+

@@ -1,123 +1,204 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
+import styles from "@/styles/Chat.module.css";
+import plane from "@/assets/paperline.png"
+import React, { useState, useEffect, useRef } from "react";
+import Head from "next/head";
+import Image from 'next/image';
+import SendIcon from '@/components/SendIcon'
 
-const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Chat() {
+
+    const classes =
+        [
+            'Introduction to Marketing',
+            'Introduction to Management',
+            'Organizational Behavior',
+            'Human Resource Management',
+
+
+        'Introduction to Accounting',
+
+        'Marketing Research',
+
+    ]
+    const ref = useRef(null);
+  const [chat, setChat] = useState([
+    {
+        "content": "You are a college professor teaching Marketing 101. When a student brings you a question, you will be provided with a excerpt from your lecture and a textbook passage related to the question to help you answer their query with context.",
+        "role": "system"
+    },
+    /*{
+        "content": "Student question: How do I pass this classLecture excerpt: This is a lecture excerpttextbook passage: This is a textbook passage",
+        "role": "user"
+    },
+    {
+        "content": "To pass this class, you need to be committed, punctual, and hardworking. Attendance is a must, as you cannot contribute or learn if you are not present in the class. Active participation in class discussions and group activities can improve your chances of passing. You must complete all the assignments and study regularly for continuous learning. Additionally, seek feedback from your peers and the professor to identify where you need to improve.\n\nAs per the textbook, the key to passing any class includes setting achievable goals, developing a study plan, managing time effectively, staying organized, practicing self-discipline, and seeking help when needed. Setting a goal for what you want to achieve in class can help you focus on studying efficiently. Developing a study plan and managing time effectively will help you stay on track and avoid procrastination. Staying organized and using tools like a planner or calendar can help you balance your class work, projects, and assignments. Discipline is vital as you are responsible for your education and need to make the right choices. Lastly, seek help from peers, professors, and tutors when needed. They can provide you with additional guidance or support to help you succeed.",
+        "role": "assistant"
+    },
+    {
+        "content": "Student question: How do I pass this classLecture excerpt: This is a lecture excerpttextbook passage: This is a textbook passage",
+        "role": "user"
+    },
+    {
+        "content": "To pass this class, you need to be committed, punctual, and hardworking. Attendance is a must, as you cannot contribute or learn if you are not present in the class. Active participation in class discussions and group activities can improve your chances of passing. You must complete all the assignments and study regularly for continuous learning. Additionally, seek feedback from your peers and the professor to identify where you need to improve.\n\nAs per the textbook, the key to passing any class includes setting achievable goals, developing a study plan, managing time effectively, staying organized, practicing self-discipline, and seeking help when needed. Setting a goal for what you want to achieve in class can help you focus on studying efficiently. Developing a study plan and managing time effectively will help you stay on track and avoid procrastination. Staying organized and using tools like a planner or calendar can help you balance your class work, projects, and assignments. Discipline is vital as you are responsible for your education and need to make the right choices. Lastly, seek help from peers, professors, and tutors when needed. They can provide you with additional guidance or support to help you succeed.",
+        "role": "assistant"
+    },
+    {
+        "content": "Student question: How do I pass this classLecture excerpt: This is a lecture excerpttextbook passage: This is a textbook passage",
+        "role": "user"
+    },
+    {
+        "content": "To pass this class, you need to be committed, punctual, and hardworking. Attendance is a must, as you cannot contribute or learn if you are not present in the class. Active participation in class discussions and group activities can improve your chances of passing. You must complete all the assignments and study regularly for continuous learning. Additionally, seek feedback from your peers and the professor to identify where you need to improve.\n\nAs per the textbook, the key to passing any class includes setting achievable goals, developing a study plan, managing time effectively, staying organized, practicing self-discipline, and seeking help when needed. Setting a goal for what you want to achieve in class can help you focus on studying efficiently. Developing a study plan and managing time effectively will help you stay on track and avoid procrastination. Staying organized and using tools like a planner or calendar can help you balance your class work, projects, and assignments. Discipline is vital as you are responsible for your education and need to make the right choices. Lastly, seek help from peers, professors, and tutors when needed. They can provide you with additional guidance or support to help you succeed.",
+        "role": "assistant"
+    }*/
+])
+
+useEffect(() => {
+  ref.current && ref.current.scrollIntoView({alignToTop: true, behavior: "smooth"})
+}, [chat])
+
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    setMessage("")
+    setLoading(true);
+
+
+    const JSONdata = JSON.stringify(
+    {
+        "message_history": chat,
+        "email": "melby@gmail.com",
+        "student_question": message,
+        "course_name": "Marketing101"
+    
+    });
+
+    const updateChat = [
+        ...chat,
+        {
+            content: `${message}`,
+            role: "user"
+        }
+    ]
+
+    setChat(updateChat)
+
+    const endpoint = "/api/form";
+
+    const options = {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSONdata,
+    };
+    const uri = process.env.NEXT_PUBLIC_API_URL + '/ask_question'
+    
+    const response = await fetch(uri, options);
+
+    const result = await response.json();
+
+    setChat(result)
+    
+    console.log(result);
+    setLoading(false);
+
+  };
+
   return (
-    <>
+    <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Generated by create next app" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+        />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
+      
+        <div className={styles.mainWrapper}>
+        <div className={styles.menu}>
+        {classes.map((course, index) => (
+          <button key={`course-${index}`}><span className="material-symbols-outlined">chat</span> {course}</button>
+          ))}
+          <button className={styles.resetBtn} onClick={()=>{
+            setChat([])
+          }}><span className="material-symbols-outlined">device_reset</span> Reset Chat</button>
+        </div>
+      <div className={styles.ChatBox}>
+      {
+        chat.length < 1 ? 
+      <div className={styles.titleContainer}>
+      <span className="material-symbols-outlined">neurology</span>
+        <p className={styles.title}>TutorAI</p>
+      </div> : ""
+        }
+        {chat.filter((msg)=>msg.role.toLowerCase() !== "system").map((message, index) => {
+            console.log(message)
+            return(
+
+          <div
+            key={index}
+            className={`${styles.message} ${
+              message.role === "assistant"
+                ? styles.assistant_msg
+                : styles.user_msg
+            }`}
+          >
+            <div className={styles.icon + " " + (message.role == "user" ? styles.userIcon : styles.aiIcon)}>
+              {message.role == "user" ? (
+                <span className="material-symbols-outlined">account_circle</span>
+              ) : (
+                <span className="material-symbols-outlined">neurology</span>
+              )}
+            </div>
+            <p>{message.content}</p>
+          </div>
+        )})}
+        
+        {loading && <div
+            className={`${styles.message} ${styles.assistant_msg
+            }`}
+          >
+            <div className={styles.icon + " " + (styles.aiIcon)}>
+              <span className="material-symbols-outlined">neurology</span>
+              
+            </div>
+            <span className={"material-symbols-outlined loader"}>
+            cached
+</span>
+          </div>}
+          <span ref={ref}></span>
+          <form onSubmit={(e)=>{
+        e.preventDefault()
+        handleSubmit(e)
+      }}>
+        <div className={styles.inputContainer}>
+          <input
+          className={styles.inputField}
+            placeholder="Ask a question about Marketing 101"
+            onChange={(e) => setMessage(e.target.value)}
+            type="text"
+            id="message"
+            name="message"
+            value={message}
+            minLength="3"
           />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
+           <button
+            onClick={handleSubmit}
+            className={styles.enterButton}
+          >
+            <SendIcon height={25} width={25}></SendIcon>
+          </button>
           </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-    </>
-  )
+        </form>
+      <div className={styles.fade}></div>
+      </div>
+</div>
+      
+    </div>
+  );
 }
