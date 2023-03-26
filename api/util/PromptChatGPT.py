@@ -23,12 +23,9 @@ def prompt_chat_gpt(student_question, lecture_text, textbook_text, message_histo
             model="gpt-3.5-turbo",
             messages=message_history,
         )
-        print("OAI RESPONSE")
-        # print(response)
+        print("3.5-turbo completion received")
         message = response["choices"][0]["message"]
         message_history.append(message)
-        print("MESSAGE HISTORY")
-        print(message_history)
         return message_history
     except Exception as e:
         print("Error in prompt_chat_gpt")

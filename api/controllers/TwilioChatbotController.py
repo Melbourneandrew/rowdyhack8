@@ -9,7 +9,8 @@ def twilio_ask_chatbot(request):
     student_question = request.form['Body']
     email = "melby_mobile@gmail.com"
     course_name = "Marketing101"
-    
+    print("Student question: " + student_question)
+
     # lecture_text = query_faiss("lecture_index.faiss", student_question)
     textbook_text, page_numbers = query_textbook(student_question)
     lecture_text = "This is a lecture excerpt"
