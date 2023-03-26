@@ -1,20 +1,19 @@
 .container {
 
     display: flex;
-    height: 100vh;
+    max-height: 100vh;
     flex-direction: column;
     background-color: white;
-    position: relative;
 
 }
+
 .title {
 
     background-color: bisque;
     border-bottom: 2px solid black;
  
-
-
 }
+
 .title p {
 
     color: black;
@@ -25,7 +24,13 @@
 .ChatBox {
 
     background-color: white;
-    height: 70vh;
+
+    display: flex;
+    flex-direction: column;
+    /* height: 100%; */
+    overflow-y: scroll;
+    padding: 1rem;
+    gap: 1.5rem;
 
 
 
@@ -36,8 +41,6 @@
     flex-direction: row;
     background-color: white;
     height: fit-content;
-    position: absolute;
-    height: 10vh;
     width: 80%;
     bottom: 0;
 }
@@ -62,4 +65,20 @@
     border-color: black;
     border-radius: 10px;
 
+}
+
+.user_msg {
+    --bg-color: blue;
+}
+
+.assistant_msg {
+    --bg-color: #000;
+    align-self: flex-end;
+}
+
+.message {
+    background-color: var(--bg-color);
+    border-radius: 1em;
+    width: 50%;
+    padding: 1rem;
 }
