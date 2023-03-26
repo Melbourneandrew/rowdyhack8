@@ -25,13 +25,13 @@ export default function Chat() {
 
     useEffect(() => {
       setChat([{
-        "content": `You are a college professor teaching ${selectedClass}. When a student brings you a question, you will be provided with a excerpt from your lecture and a textbook passage related to the question to help you answer their query with context.`,
+        "content": `You are a college professor teaching ${classes[selectedClass]}. When a student brings you a question, you will be provided with a excerpt from your lecture and a textbook passage related to the question to help you answer their query with context.`,
         "role": "system"
     }])
     },[selectedClass])
   const [chat, setChat] = useState([
     {
-        "content": `You are a college professor teaching ${selectedClass}. When a student brings you a question, you will be provided with a excerpt from your lecture and a textbook passage related to the question to help you answer their query with context.`,
+        "content": `You are a college professor teaching ${classes[selectedClass]}. When a student brings you a question, you will be provided with a excerpt from your lecture and a textbook passage related to the question to help you answer their query with context.`,
         "role": "system"
     }
 ])
