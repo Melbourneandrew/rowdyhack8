@@ -97,10 +97,14 @@ export default function Chat() {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
         />
       </Head>
+
+      {
+        chat.length < 2 ? 
       <div className={styles.titleContainer}>
       <span className="material-symbols-outlined">neurology</span>
         <p className={styles.title}>TutorAI</p>
-      </div>
+      </div> : ""
+        }
       <div className={styles.ChatBox}>
 
         {chat.filter((msg)=>msg.role.toLowerCase() !== "system").map((message, index) => {
