@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 .container {
 
     display: flex;
-    max-height: 100vh;
+    height: 100vh;
     flex-direction: column;
     background-color: white;
+    font-family: 'Inter', sans-serif;
+
 
 }
 
@@ -27,13 +31,8 @@
 
     display: flex;
     flex-direction: column;
-    /* height: 100%; */
+    height: 100%;
     overflow-y: scroll;
-    padding: 1rem;
-    gap: 1.5rem;
-
-
-
 }
 
 .TextArea {
@@ -68,17 +67,31 @@
 }
 
 .user_msg {
-    --bg-color: blue;
+    --bg-color: #fed7aa;
 }
 
 .assistant_msg {
-    --bg-color: #000;
-    align-self: flex-end;
+    --bg-color:  #b09f8d;
 }
 
 .message {
     background-color: var(--bg-color);
-    border-radius: 1em;
-    width: 50%;
-    padding: 1rem;
+    padding: 2rem 4rem;
+    line-height: 1.5rem;
+    color: black;
+    display: flex;
+    gap: 1rem;
+}
+
+.icon {
+    --size: 2.25rem;
+    background-color: rgba(0,0,0,0.35);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 0.1rem;
+    color: black;
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
