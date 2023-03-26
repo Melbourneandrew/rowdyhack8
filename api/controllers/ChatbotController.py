@@ -20,7 +20,8 @@ def ask_chatbot(request):
     new_message_history = prompt_chat_gpt(student_question, lecture_text, textbook_text, message_history, course_name)
     # replace last user message with only student question, so that the textbook and lecture excerpts are not displayed in the chat
     new_message_history[-2] = {"role": "user", "content": student_question}
-    new_message_history.append({"role": "assistant", "content": "See textbook pages: " + ", ".join(str(num) for num in page_numbers)})
+    # Add page numbers to the assistant response
+    new_message_history[-1]["content"] += "\n See textbook pages: " + ", ".join(str(num) for num in page_numbers)
     add_user_message_history(email, course_name, new_message_history)
 
     # print(new_message_history)
