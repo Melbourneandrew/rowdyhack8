@@ -18,6 +18,8 @@ def ask_chatbot(request):
     lecture_text = "This is a lecture excerpt"
     # textbook_text = "This is a textbook passage"
     new_message_history = prompt_chat_gpt(student_question, lecture_text, textbook_text, message_history, course_name)
+    # replace last user message with only student question, so that the textbook and lecture excerpts are not displayed in the chat
+    new_message_history[-2] = {"role": "user", "content": student_question}
     new_message_history.append({"role": "assistant", "content": "See textbook pages: " + ", ".join(str(num) for num in page_numbers)})
     add_user_message_history(email, course_name, new_message_history)
 

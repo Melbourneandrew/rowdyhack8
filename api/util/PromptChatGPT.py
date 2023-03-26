@@ -8,7 +8,7 @@ def prompt_chat_gpt(student_question, lecture_text, textbook_text, message_histo
     if message_history is None:
         message_history = []
 
-    student_prompt = "Student question: " + student_question + " Lecture excerpt: " + lecture_text + " textbook passage: " + textbook_text
+    student_prompt = "Lecture excerpt: " + lecture_text + " textbook passage: " + textbook_text + " Student question: " + student_question
     # If message history is empty, start a new chat
     if len(message_history) == 0:
         message_history.append({
