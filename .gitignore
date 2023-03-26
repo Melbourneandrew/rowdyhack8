@@ -2,3 +2,5 @@ venv
 .env*
 horses.txt
 marketing101.pdf
+.idea
+*.json
