@@ -1,20 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 .container {
 
     display: flex;
     height: 100vh;
     flex-direction: column;
     background-color: white;
-    position: relative;
+    font-family: 'Inter', sans-serif;
+
 
 }
+
 .title {
 
     background-color: bisque;
     border-bottom: 2px solid black;
  
-
-
 }
+
 .title p {
 
     color: black;
@@ -25,10 +28,11 @@
 .ChatBox {
 
     background-color: white;
-    height: 70vh;
 
-
-
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .TextArea {
@@ -36,8 +40,6 @@
     flex-direction: row;
     background-color: white;
     height: fit-content;
-    position: absolute;
-    height: 10vh;
     width: 80%;
     bottom: 0;
 }
@@ -62,4 +64,34 @@
     border-color: black;
     border-radius: 10px;
 
+}
+
+.user_msg {
+    --bg-color: #f8dbba;
+}
+
+.assistant_msg {
+    --bg-color:  #f7dfc0;
+}
+
+.message {
+    background-color: var(--bg-color);
+    padding: 2rem 4rem;
+    line-height: 1.5rem;
+    color: black;
+    display: flex;
+    gap: 1rem;
+}
+
+.icon {
+    --size: 2.25rem;
+    background-color: rgba(0,0,0,0.1);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 0.1rem;
+    color: black;
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
