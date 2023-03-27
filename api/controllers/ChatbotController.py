@@ -48,7 +48,7 @@ def ask_chatbot(request):
     new_message_history[-2] = {"role": "user", "content": student_question}
     # Add page numbers to the assistant response
     new_message_history[-1]["content"] += "\n See textbook pages: " + ", ".join(str(num) for num in page_numbers)
-    add_user_message_history(email, course_name, new_message_history)
+    # add_user_message_history(email, course_name, new_message_history)
 
     # print(new_message_history)
     return new_message_history
