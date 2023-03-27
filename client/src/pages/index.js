@@ -139,7 +139,7 @@ useEffect(() => {
                 <span className="material-symbols-outlined">neurology</span>
               )}
             </div>
-            <p>{message.content}</p>
+            <p style={{whiteSpace: "pre-line"}}>{message.content}</p>
           </div>
         )})}
         
