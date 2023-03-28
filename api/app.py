@@ -35,3 +35,7 @@ def ask_question():
 def sms_reply():
     print("SMS received...")
     return twilio_ask_chatbot(request)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)

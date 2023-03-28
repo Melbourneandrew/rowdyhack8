@@ -3,17 +3,17 @@ import os
 import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-def prompt_chat_gpt(student_question, lecture_text, textbook_text, message_history=None,
+def prompt_chat_gpt(student_question, lecture_text, textbook_text, textbook_pages, message_history=None,
                     course_name=None):
     if message_history is None:
         message_history = []
 
-    student_prompt = "Lecture excerpt: " + lecture_text + " textbook passage: " + textbook_text + " Student question: " + student_question
+    student_prompt = "Lecture excerpt: " + lecture_text + " textbook passage from page " + str(textbook_pages[0]) + ": " + textbook_text + " Student question: " + student_question
     # If message history is empty, start a new chat
     if len(message_history) == 0:
         message_history.append({
             "role": "system",
-            "content": "You are a college professor teaching " + course_name + ". When a student brings you a question, you will be provided with a excerpt from your lecture and a textbook passage related to the question to help you answer their query with context."
+            "content": "You are a college professor teaching " + course_name + ". When a student brings you a question, you will be provided with a excerpt from your lecture and a textbook passage related to the question to help you answer their query with context. If you cannot come up with satisfactory answer to a query, the last word of your response will be \"fail\""
         })
     message_history.append({
         "role": "user", "content": student_prompt
